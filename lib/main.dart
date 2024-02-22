@@ -37,7 +37,6 @@ class _MyAppState extends State<MyApp> {
     localization.init(
       mapLocales: [
         const MapLocale('en', AppLocale.EN),
-        const MapLocale('km', AppLocale.KM),
         const MapLocale('ja', AppLocale.JA),
         const MapLocale('br', AppLocale.BR),
       ],

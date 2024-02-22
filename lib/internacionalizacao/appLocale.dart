@@ -19,6 +19,6 @@ mixin AppLocale {
     option2: 'Opção 2',
     option3: 'Opção 3'
   };
-  static const Map<String, dynamic> KM = {title: 'ការធ្វើមូលដ្ឋានីយកម្ម'};
+
   static const Map<String, dynamic> JA = {title: 'ローカリゼーション'};
 }

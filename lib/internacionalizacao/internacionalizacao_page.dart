@@ -15,7 +15,7 @@ class InternacionalizacaoPage extends StatefulWidget {
 }
 
 class _InternacionalizacaoPageState extends State<InternacionalizacaoPage> {
-  String bodytext = 'Texto Default';
+  String bodytext = 'Default';
 
   @override
   Widget build(BuildContext context) {
