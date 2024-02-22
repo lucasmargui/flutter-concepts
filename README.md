@@ -4,6 +4,12 @@
 ## Visão Geral
 Este aplicativo foi projetado utilizando conceitos básicos de flutter como gerenciamento de estado, navegação, api e etc...
 
+<div align="center">
+ <img src="https://github.com/lucasmargui/Flutter_Conceitos/assets/157809964/c7858449-9979-4b50-b682-bb297fcfbf91" style="width:50%">
+</div>
+
+
+
 
 ### Widgets e Elementos Fundamentais:
 
