@@ -3,22 +3,25 @@ import 'package:flutter/material.dart';
 class EventosPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // Página de eventos, define a estrutura da página
     return Scaffold(
       appBar: AppBar(
         title: Text('Advanced ReorderableListView Example'),
       ),
-      body: ItemList(),
+      body: ItemList(), // Corpo da página composto por uma lista de itens
     );
   }
 }
 
 class ItemList extends StatefulWidget {
   @override
-  _ItemListState createState() => _ItemListState();
+  _ItemListState createState() =>
+      _ItemListState(); // Cria o estado mutável da lista de itens
 }
 
 class _ItemListState extends State<ItemList> {
   List<String> items = [
+    // Lista de itens
     'Item 1',
     'Item 2',
     'Item 3',
@@ -28,6 +31,7 @@ class _ItemListState extends State<ItemList> {
 
   @override
   Widget build(BuildContext context) {
+    // Constrói a visualização da lista de itens reordenáveis
     return ReorderableListView(
       onReorder: (oldIndex, newIndex) {
         setState(() {
@@ -57,6 +61,7 @@ class _ItemListState extends State<ItemList> {
   }
 
   void _editItem(int index) {
+    // Função para editar um item
     showDialog(
       context: context,
       builder: (context) {
@@ -87,6 +92,7 @@ class _ItemListState extends State<ItemList> {
   }
 
   void _deleteItem(int index) {
+    // Função para excluir um item
     showDialog(
       context: context,
       builder: (context) {
@@ -130,6 +136,7 @@ class ItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Widget representando um item na lista
     return GestureDetector(
       key: key,
       onLongPress: onLongPress,

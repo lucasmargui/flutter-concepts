@@ -1,29 +1,11 @@
-// ignore_for_file: unnecessary_null_comparison
+// ignore_for_file: unnecessary_null_comparison // Ignora avisos sobre comparação desnecessária com null., unnecessary_null_comparison
 
-import 'dart:async';
-import 'dart:convert';
-import 'dart:math';
-import 'package:flutter/material.dart';
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Gerenciamento de Estado',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        fontFamily: 'Roboto',
-      ),
-      home: EstadoPage(),
-    );
-  }
-}
+import 'dart:async'; // Importa a biblioteca para lidar com operações assíncronas.
+import 'dart:convert'; // Importa a biblioteca para codificação e decodificação de JSON.
+import 'dart:math'; // Importa a biblioteca para funções matemáticas.
+import 'package:flutter/material.dart'; // Importa o pacote de widgets do Flutter.
+import 'package:flutter_colorpicker/flutter_colorpicker.dart'; // Importa o seletor de cores.
+import 'package:shared_preferences/shared_preferences.dart'; // Importa para lidar com o armazenamento de preferências.
 
 class EstadoPage extends StatefulWidget {
   @override
@@ -31,37 +13,27 @@ class EstadoPage extends StatefulWidget {
 }
 
 class _EstadoPageState extends State<EstadoPage> {
-  int _counter = 0;
-  int _maxValue = 100;
-  Color _counterColor = Colors.black;
-  List<int> _undoStack = [];
-  List<int> _redoStack = [];
-  Timer? _timer;
-  int _incrementStep = 1;
+  int _counter = 0; // Contador inicial.
+  int _maxValue = 100; // Valor máximo do contador.
+  Color _counterColor = Colors.black; // Cor do contador.
+  List<int> _undoStack = []; // Pilha para operações desfeitas.
+  List<int> _redoStack = []; // Pilha para operações refeitas.
+  Timer? _timer; // Timer para contagem regressiva.
+  int _incrementStep = 1; // Incremento do contador.
 
   @override
   void initState() {
     super.initState();
-    // A função initState é chamada quando o estado do widget é inicializado.
-    // É usado para realizar inicializações que dependem do contexto do widget.
-    // Aqui, carregamos o estado do contador salvo ao inicializar o widget.
-    _loadCounterState();
+    _loadCounterState(); // Carrega o estado do contador ao inicializar.
   }
 
   @override
   void dispose() {
-    // A função dispose é chamada quando o widget está sendo removido da árvore de widgets.
-    // É usado para limpar recursos, como fechamento de streams ou cancelamento de timers.
-    // Aqui, cancelamos o timer se estiver ativo para evitar vazamentos de recursos.
-    _timer?.cancel();
+    _timer?.cancel(); // Cancela o timer ao descartar o widget.
     super.dispose();
   }
 
-  // setState Função para atualizar o estado do widget.
-  // O setState é usado para notificar o Flutter que o estado do widget foi alterado
-  // e que a interface do usuário precisa ser reconstruída.
-
-  // Função para incrementar o contador
+  // Função para incrementar o contador.
   void _incrementCounter() {
     setState(() {
       if (_counter < _maxValue) {
@@ -72,7 +44,7 @@ class _EstadoPageState extends State<EstadoPage> {
     });
   }
 
-  // Função para decrementar o contador
+  // Função para decrementar o contador.
   void _decrementCounter() {
     setState(() {
       if (_counter > 0) {
@@ -83,7 +55,7 @@ class _EstadoPageState extends State<EstadoPage> {
     });
   }
 
-  // Função para resetar o contador
+  // Função para resetar o contador.
   void _resetCounter() {
     setState(() {
       _undoStack.add(_counter);
@@ -92,21 +64,21 @@ class _EstadoPageState extends State<EstadoPage> {
     });
   }
 
-  // Função para definir o valor máximo do contador
+  // Função para definir o valor máximo do contador.
   void _setCounterMaxValue(String value) {
     setState(() {
       _maxValue = int.tryParse(value) ?? _maxValue;
     });
   }
 
-  // Função para definir a cor do contador
+  // Função para definir a cor do contador.
   void _setCounterColor(Color color) {
     setState(() {
       _counterColor = color;
     });
   }
 
-  // Função para definir um valor aleatório para o contador
+  // Função para definir um valor aleatório para o contador.
   void _setRandomValue() {
     setState(() {
       _undoStack.add(_counter);
@@ -115,7 +87,7 @@ class _EstadoPageState extends State<EstadoPage> {
     });
   }
 
-  // Função para incrementar o contador por uma quantidade específica
+  // Função para incrementar o contador por uma quantidade específica.
   void _incrementByAmount(int amount) {
     setState(() {
       if (_counter + amount <= _maxValue) {
@@ -126,7 +98,7 @@ class _EstadoPageState extends State<EstadoPage> {
     });
   }
 
-  // Função para desfazer a última operação no contador
+  // Função para desfazer a última operação no contador.
   void _undo() {
     setState(() {
       if (_undoStack.isNotEmpty) {
@@ -136,7 +108,7 @@ class _EstadoPageState extends State<EstadoPage> {
     });
   }
 
-  // Função para refazer a última operação desfeita no contador
+  // Função para refazer a última operação desfeita no contador.
   void _redo() {
     setState(() {
       if (_redoStack.isNotEmpty) {
@@ -146,7 +118,7 @@ class _EstadoPageState extends State<EstadoPage> {
     });
   }
 
-  // Função para iniciar a contagem regressiva
+  // Função para iniciar a contagem regressiva.
   void _startCountdown(int seconds) {
     _timer?.cancel();
     _timer = Timer.periodic(Duration(seconds: 1), (timer) {
@@ -162,29 +134,30 @@ class _EstadoPageState extends State<EstadoPage> {
     });
   }
 
-  // Função para pausar a contagem regressiva
+  // Função para pausar a contagem regressiva.
   void _pauseCountdown() {
     _timer?.cancel();
   }
 
-  // Função para retomar a contagem regressiva
+  // Função para retomar a contagem regressiva.
   void _resumeCountdown() {
     _startCountdown(_counter);
   }
 
-  // Função para salvar o estado atual do contador
+  // Função para salvar o estado atual do contador.
   void _saveCounterState() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(
-        'counter_state',
-        jsonEncode({
-          'counter': _counter,
-          'max_value': _maxValue,
-          'color': _counterColor.value,
-        }));
+      'counter_state',
+      jsonEncode({
+        'counter': _counter,
+        'max_value': _maxValue,
+        'color': _counterColor.value,
+      }),
+    );
   }
 
-  // Função para carregar o estado do contador salvo
+  // Função para carregar o estado do contador salvo.
   void _loadCounterState() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? counterState = prefs.getString('counter_state');
