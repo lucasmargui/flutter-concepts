@@ -15,11 +15,13 @@ class InternacionalizacaoPage extends StatefulWidget {
 }
 
 class _InternacionalizacaoPageState extends State<InternacionalizacaoPage> {
+  String bodytext = 'Texto Default';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Exemplos de Widgets em Column'),
+        title: Text('Internacionalização'),
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
@@ -30,9 +32,25 @@ class _InternacionalizacaoPageState extends State<InternacionalizacaoPage> {
               child: const Text('English'),
               onPressed: () {
                 widget.localization.translate('en');
+
+                setState(() {
+                  bodytext = AppLocale.title.getString(context);
+                });
                 print(AppLocale.title.getString(context));
               },
-            )
+            ),
+            ElevatedButton(
+              child: const Text('Português'),
+              onPressed: () {
+                widget.localization.translate('br');
+                setState(() {
+                  bodytext = AppLocale.title.getString(context);
+                });
+                print(AppLocale.title.getString(context));
+              },
+            ),
+            SizedBox(height: 50.0),
+            Text(bodytext)
           ],
         ),
       ),
