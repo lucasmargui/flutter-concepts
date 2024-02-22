@@ -109,7 +109,6 @@ class _MyHomePageState extends State<MyHomePage> {
     RotaNome(rota: 'temas', descricao: 'Temas e Estilos'),
     RotaNome(rota: 'eventos', descricao: 'Tratamento de Eventos'),
     RotaNome(rota: 'animacoes', descricao: 'Animações'),
-    RotaNome(rota: 'depuracao', descricao: 'Depuração e Testes'),
     RotaNome(rota: 'layout', descricao: 'Layout Responsivo'),
     RotaNome(
         rota: 'internacionalizacao',
